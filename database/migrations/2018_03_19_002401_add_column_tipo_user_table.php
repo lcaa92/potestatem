@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCursosTable extends Migration
+class AddColumnTipoUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateCursosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cursos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('curso')->unique();
-            $table->boolean('inativo')->default('0');    
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('tipo_user_id')->unsigned();
+            $table->foreign('tipo_user_id')->references('id')->on('tipo_user');
         });
     }
 
@@ -28,6 +26,6 @@ class CreateCursosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cursos');
+        //
     }
 }

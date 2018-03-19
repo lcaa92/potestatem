@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['middleware' => 'auth', 'prefix'=>'painel'], function () {
+    Route::group(['prefix' => 'alunos'], function () {
+        Route::get('certificados', 'AlunosController@certificadosAlunos')->name('certificados.alunos');
+        Route::get('certificados/{user_id?}', 'AlunosController@certificadosPorAluno')->name('certificados.por.aluno');
+    });
+});
