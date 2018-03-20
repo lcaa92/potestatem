@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Top 100 alunos certificados</div>
+                <div class="card-header">Certificados</div>
 
                 <div class="card-body">
 

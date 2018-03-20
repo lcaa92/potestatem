@@ -13,8 +13,6 @@ class AlunosController extends Controller
     public function certificadosAlunos(){
         $alunos = CertificadosAlunos::select('user_id', DB::raw('count(user_id) AS num_certificados'))
             ->groupby('user_id')
-            ->orderby('num_certificados', 'desc')
-            ->limit(100)
             ->get();
         return view('alunos.certificados', ['alunos'=>$alunos]);
     }
@@ -42,4 +40,15 @@ class AlunosController extends Controller
         }
         abort(500, 'Erro');
     }
+
+    public function reportTop100Alunos(){
+        $alunos = CertificadosAlunos::select('user_id', DB::raw('count(user_id) AS num_certificados'))
+            ->groupby('user_id')
+            ->orderby('num_certificados', 'desc')
+            ->limit(100)
+            ->get();
+        return view('alunos.top100certificados', ['alunos'=>$alunos]);
+    }
+
+    
 }
